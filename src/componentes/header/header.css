@@ -1,0 +1,22 @@
+  *{
+    font-family: 'Raleway',sans-serif;
+  
+    margin:0;
+    color: #353535;
+  }
+  .App-header {
+    background-color: #00264B;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    min-height: 10vh;
+    width: 100%;
+  }
+
+  .App-header img {
+      height: 50px;
+      width: 150px;
+
+  }

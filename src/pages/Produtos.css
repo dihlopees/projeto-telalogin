@@ -1,0 +1,119 @@
+.quantidade {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  float: left;
+  width: 550px;
+}
+.quantidade h3 {
+  margin-left: 43px;
+  font-size: 15px;
+  margin-top: 7px;
+}
+
+.quantidade h2 {
+  color: #0f4c81;
+}
+.quantidade button {
+  background: transparent;
+  border: 0;
+  width: 30px;
+  justify-content: center;
+  text-align: center;
+  min-height: 20px;
+}
+
+.quantidade button img {
+  width: 30px;
+}
+
+.quantidade p {
+  border: solid 1px black;
+  border-radius: 5px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+}
+
+.produto {
+  border: solid 1px #b2b2b2;
+  border-radius: 7px;
+  margin-top: 50px;
+  height: 300px;
+  width: 600px;
+}
+
+#hr {
+  margin: 30px;
+  border: 1px solid #d9d9d9;
+}
+
+.divtodos {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+  justify-content: space-around;
+}
+#titulo {
+  font-family: "Raleway", sans-serif;
+  font-size: 20px;
+  display: flex;
+  justify-content: left;
+  padding-left: 100px;
+  padding-top: 0;
+}
+
+.produto .cardresumo {
+  float: right;
+}
+
+.contas {
+  background-color: #f5f5f5;
+  width: 300px;
+  margin-right: 30px;
+  border-radius: 6px;
+  margin-top: 50px;
+}
+
+.contas p {
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+  word-spacing: 6px;
+  padding: 5px;
+  padding-top: 20px;
+}
+
+.linha {
+  border: 1px solid #d9d9d9;
+  margin: 15px;
+}
+
+.botao {
+  background: #0f4c81;
+  color: #fff;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 90%;
+  height: 30px;
+  text-align: center;
+  letter-spacing: 1px;
+  border: none;
+}
+
+.contas .botao {
+  margin-left: 15px;
+  margin-bottom: 17px;
+}
+
+.pagar {
+  color:green;
+  float: "right";
+  margin-right: "50px";
+  border: "1px solid #008000";
+  padding: "10px";
+  margin-bottom: "15px";
+  text-align: "center";
+}
