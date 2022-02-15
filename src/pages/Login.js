@@ -1,11 +1,16 @@
 import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 import Logo from "../componentes/header/logo.svg"
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Button } from "@mui/material";
 import "./Login.css";
+import authService from "../services/auth.service";
 
 
-export default function Login() {
+function Login() {
+
+  const navegar = useNavigate();
+
   const estadoInicial = {
     user: "",
     password: ""
@@ -25,7 +30,7 @@ export default function Login() {
     }));
   }
 
-  function enviarForm(event) {
+  const enviarForm = async (event) =>  {
     event.preventDefault();
 
     if (inputs.user === "") {
@@ -42,13 +47,25 @@ export default function Login() {
       email: inputs.user,
       senha: inputs.password
     }
+    try { 
+      let res = await authService.authenticate(data)
+      console.log("res", res.data)
+        if (!res.data) {
+          alert("Usuario não cadastrado")
+        } else {
+         navegar("./home")
+        }
+    } catch (error) {
+      console.log(error)
+      alert("Erro ao efetuar o login")
+    }
     console.log("data", data);
   }
 
   return (
-    <div>
+    <div className="formulario">
       <img id="img-login" src={Logo} alt="logo"/>
-      <form className="formulario">
+      <form>
         <div className="password-field">
           <input
             type="text"
@@ -57,7 +74,7 @@ export default function Login() {
             name="user"
             onChange={setarNovoValor}
           />
-          {!inputs.user ? <p class="input-error">Digite seu e-mail </p> : null}
+          {!inputs.user ? <p className="input-error">Digite seu e-mail </p> : null}
         </div>
         <div className="password-field">
           <input
@@ -92,3 +109,4 @@ export default function Login() {
     </div>
   );
 }
+export default Login;

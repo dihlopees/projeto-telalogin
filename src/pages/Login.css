@@ -1,10 +1,10 @@
-* {
+/* * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-  }
+  } */
   
-  body {
+  .formulario {
     width: 100%;
     min-height: 100vh;
     display: flex;
@@ -12,12 +12,15 @@
     align-items: center;
     background-color: #00264B;
     flex-direction: column;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
   }
 
   #img-login{
     width: 300px;
     margin-bottom: 100px;
-    margin-left: 80px;
+   
   }
   
   .password-field {
@@ -30,8 +33,8 @@
 
   
   input {
-    width: 30rem;
-    height: 4em;
+    width: 500px;
+    height: 20px;
     padding: 1em;
     border: 2px solid grey;
     border-radius: 10px;
@@ -43,6 +46,7 @@
   input::placeholder {
     color: #353535;
     font-weight: bold;
+    
   }
   
   .icon {
@@ -72,10 +76,11 @@
     font-size: 12px;
     font-weight: bold;
     border-radius: 5px;
-    width: 30rem;
-    height: 4em;
+    width: 536px;
+    height: 50px;
     text-align: center;
     letter-spacing: 1px;
     border: 1px solid white ;
+    padding: 0;
   }
   

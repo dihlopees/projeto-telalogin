@@ -6,12 +6,14 @@ import Home from "./pages/Home";
 import {Cadastro} from "./pages/Cadastro";
 import {Produtos} from "./pages/Produtos";
 import {Editar} from "./pages/Editar";
+import Login from "./pages/Login";
 
 const Rota = () => {
     return (
         <BrowserRouter>
         <Routes>
-        <Route element = {<Home/>} path="/" exact/>
+        <Route element = {<Login/>} path="/" exact/>
+        <Route element = {<Home/>} path="/home"/>
         <Route element= {<Cadastro/>} path="cadastro" />
         <Route element={<Produtos/>} path="produtos/:id"/>
         <Route element={<Editar/>} path="editar/:id"/>
