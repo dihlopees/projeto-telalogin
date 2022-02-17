@@ -11,6 +11,9 @@ function Login() {
 
   const navegar = useNavigate();
 
+  
+
+
   const estadoInicial = {
     user: "",
     password: ""
@@ -50,16 +53,22 @@ function Login() {
     try { 
       let res = await authService.authenticate(data)
       console.log("res", res.data)
+      
         if (!res.data) {
+
           alert("Usuario não cadastrado")
         } else {
+          authService.setLoggedUser(res.data)
          navegar("./home")
+         
         }
+
+        
     } catch (error) {
       console.log(error)
       alert("Erro ao efetuar o login")
     }
-    console.log("data", data);
+    // console.log("data", data);
   }
 
   return (

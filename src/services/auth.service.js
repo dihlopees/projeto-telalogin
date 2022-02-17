@@ -11,20 +11,22 @@ const authService = {
     async authenticate(data) {
         const endpoint = `${apiUrl}/usuario`
         return axios.post(endpoint, data);
+
     },
 
-    // // Função para salar o usuário logado no local storage
-    // setLoggedUser(data){
-    //     let parsedData = JSON.stringify(data)
-    //     localStorage.setItem("user", parsedData)
-    // },
+    // Função para salar o usuário logado no local storage
+    setLoggedUser(token){
+        let parsedData = (token)
+        console.log(token); 
+        localStorage.setItem("token", parsedData.token)
+    },
 
-    // // Função responsável por recuperar o usuário logado do local storage
+    // Função responsável por recuperar o usuário logado do local storage
     // getLoggedUser(){
-    //     let data = localStorage.getItem("user");
+    //     let data = localStorage.getItem("token");
     //     if(!data) return null;
     //     try {
-    //         let parsedData = JSON.parse(data)
+    //         let parsedData = (data)
     //         return parsedData
     //     } catch (error) {
     //         console.log(error)

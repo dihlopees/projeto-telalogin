@@ -5,5 +5,11 @@ const api = axios.create({
 });
 
 
+api.interceptors.request.use((config)=>{
+  config.headers.Authorization = localStorage.getItem("token")
+  console.log(config)
+  return config
+})
+
 
 export default api;
