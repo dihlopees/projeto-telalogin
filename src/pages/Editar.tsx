@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import api from "../api";
-import Header from "../componentes/header/header.js";
+import Header from "../componentes/header/header";
 import { Link , useParams} from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
-import InputAdornment from '@mui/material/InputAdornment';
+// import InputAdornment from '@mui/material/InputAdornment';
 import MenuItem from "@mui/material/MenuItem";
 import { Button, Select } from "@mui/material";
 import AddFoto from "../imagens/icone-adicionar-foto.svg";
@@ -41,9 +41,9 @@ export function Editar() {
   const opcoesData = (event) => {
     setData(event.target.value);
   };
-  const opcoesImagem = (event) => {
-    setImagem(event.target.value);
-  };
+  // const opcoesImagem = (event) => {
+  //   setImagem(event.target.value);
+  // };
 
   const opcoesCor = (event) => {
     setCor(event.target.value);
@@ -116,16 +116,16 @@ export function Editar() {
     <div>
       <Header />
       <br />
-      <nav class="link">
+      <nav className="link">
         <br />
         <Link to="../">Home</Link>
         {"   >  "}
         <Link to="../Editar">Editar Produto</Link>
       </nav>
 
-      <h2 class="h">Editar Produtos</h2>
+      <h2 className="h">Editar Produtos</h2>
 
-      <div class="quadro">
+      <div className="quadro">
         <form>
           <TextField
             className="campo"
@@ -151,7 +151,7 @@ export function Editar() {
             variant="outlined"
             value={valor ??""}
             onChange={opcoesValor}
-            startAdornment={<InputAdornment position="start">R$</InputAdornment>}
+            // startAdornment={<InputAdornment position="start">R$</InputAdornment>}
             label="Valor"
           />
           <br />
@@ -188,14 +188,14 @@ export function Editar() {
           <br />
           <br />
           <br />
-          <input class="addimg" type="file"  />
+          <input className="addimg" type="file"  />
           <img src={AddFoto} alt="adicionar foto" />
           {/* <input type="file" ><img src={imagem} alt="imagem do produto" /></input> */}
           <br />
           <br />
           <br />
 
-          <Button class="botão" variant="contained" size="large" onClick={() => enviandoBack()}>
+          <Button className="botão" variant="contained" size="large" onClick={() => enviandoBack()}>
             SALVAR PRODUTO
           </Button>
         </form>

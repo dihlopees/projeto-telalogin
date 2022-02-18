@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from "../api";
-import Header from "../componentes/header/header.js";
+import Header from "../componentes/header/header";
 import { Link } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import FormControl from '@mui/material/FormControl';
@@ -53,11 +53,12 @@ export function Cadastro() {
     };
 
     function transFileparaBase(file){
+
       file.text().then(() => {
         let reader = new FileReader()
         reader.readAsDataURL(file)
         reader.onloadend = () => {
-          const document = reader.result
+          const document: any = reader.result
 
           setImagem(document.slice(document.lastIndexOf(",") + 1, document.length)) 
           console.log(document.slice(document.lastIndexOf(",") + 1, document.length));
@@ -104,10 +105,7 @@ export function Cadastro() {
     imagem: imagem,
     data: data,
     corid: cor,
-  },
-    api.post('produtos/upload', {
-      imagem: imagem,
-    }))
+  })
   .then(function (response) {
     window.location.replace('/')
     alert("Produto cadastrado com sucesso");
@@ -122,7 +120,7 @@ export function Cadastro() {
     <div>
       <Header />
       <br />
-      <nav class="link">
+      <nav className="link">
         <br />
         <Link to="../">Home</Link>
         {"   >  "}
@@ -130,11 +128,11 @@ export function Cadastro() {
       </nav>
 
 
-      <h2 class="h">Adicionar Produtos</h2>
+      <h2 className="h">Adicionar Produtos</h2>
 
 
-     {/* window.location.reload() */}
-      <div class="quadro">
+    
+      <div className="quadro">
         <form>
           <TextField
             className="campo"
@@ -196,12 +194,12 @@ export function Cadastro() {
           <br />
           <br />
           <br />
-          <input class="addimg" type="file"  onChange={handleFile} />
+          <input className="addimg" type="file"  onChange={handleFile} />
           <img src={AddFoto} alt="adicionar foto" />
           <br />
           <br />
           <br />
-          <Button class="botão" variant="contained" size="large" onClick={() => enviandoBack()}>
+          <Button className="botão" variant="contained" size="large" onClick={() => enviandoBack()}>
             ADICIONAR PRODUTO
           </Button>
         </form>

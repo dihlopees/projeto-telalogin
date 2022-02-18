@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
-import Header from "../componentes/header/header.js";
+import Header from "../componentes/header/header";
 import { Link, useParams } from "react-router-dom";
 import Menos from "../imagens/iconecarrinho-menos.svg";
 import Plus from "../imagens/iconecarrinho-mais.svg";
 import api from "../api";
 import "./Produtos.css";
 // import IconeFrete from "../imagens/IconeFrete.svg";
-import UnicoItem from "../componentes/itemCarrinho.js/itemCarrinho.js";
-import { display } from "@mui/system";
+import UnicoItem from "../componentes/itemCarrinho.js/itemCarrinho";
+
 
 export function Produtos() {
   const [count, setCount] = useState(1);
@@ -62,7 +62,7 @@ export function Produtos() {
     return (total = soma + resultado);
   }
 
-  console.log(item.valor);
+  // console.log(item.valor);
 
   function produtoComprado() {
     return item.map((it) => (
@@ -169,23 +169,23 @@ export function Produtos() {
       <Header />
 
       <br />
-      <nav class="link">
+      <nav className="link">
         <br />
         <Link to="../">Home</Link>
         {"   >   "}
         <Link to="../Carrinho">Carrinho</Link>
       </nav>
 
-      <div class="divtodos">
-        <div class="produtoss">
+      <div className="divtodos">
+        <div className="produtoss">
           <h1> Carrinho</h1>
-          <div class="produto">
+          <div className="produto">
             {produtoComprado()}
             {/* <UnicoItem item={item} /> */}
 
             <hr id="hr" />
 
-            <div class="quantidade">
+            <div className="quantidade">
               <h3> Quantidade:</h3>
 
               <button onClick={diminuir}>
@@ -203,23 +203,23 @@ export function Produtos() {
           </div>
         </div>
 
-        <div class="cardresumo">
+        <div className="cardresumo">
           <h1>Resumo do Pedido</h1>
 
-          <div class="contas">
+          <div className="contas">
             <p>
               Subtotal ({count} item) {conv(somaPreco())}
             </p>
             <br />
-            <hr class="linha" />
+            <hr className="linha" />
             <p>Frete {conv(frete())}</p>
             <br />
-            <hr class="linha" />
+            <hr className="linha" />
             <p>Valor Total {conv(somaTotal())}</p>
             <br />
 
             <Button
-              class="botao"
+              className="botao"
               variant="contained"
               size="small"
               onClick={() => sumirDiv()}

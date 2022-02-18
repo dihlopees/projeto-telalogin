@@ -1,6 +1,7 @@
+import React from "react";
 import './App.css';
 // import Login from "../src/pages/Login"
-import Rota from './routes.js';
+import Rota from './routes';
 
 function App() {
   return (

@@ -9,10 +9,10 @@ const UnicoItem = (props) => {
 
 
   return (
-    <div class="quadradocompras">
+    <div className="quadradocompras">
       <img src={tipo + props.img_url} alt="imagemdoproduto" />
 
-      <div class="descrisaodositens">
+      <div className="descrisaodositens">
         <h2> {props.name} </h2>
         
         <p> {props.marca} </p>

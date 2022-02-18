@@ -95,7 +95,7 @@ function Login() {
             onChange={setarNovoValor}
           />
           {!inputs.password ? (
-            <p class="input-error">Digite sua senha </p>
+            <p className="input-error">Digite sua senha </p>
           ) : null}
 
           <span className="icon">
@@ -109,7 +109,7 @@ function Login() {
           </span>
         </div>
         <div>
-          <Button class="button" type="submit" onClick={enviarForm}>
+          <Button className="button" type="submit" onClick={enviarForm}>
             LOGAR
           </Button>
         </div>

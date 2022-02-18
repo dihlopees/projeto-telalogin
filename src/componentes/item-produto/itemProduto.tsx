@@ -9,7 +9,6 @@ import "./itemProduto.css";
 const ItemProduto = (props) => {
   const id = "../Produtos/" + props.id;
   const ideditar = "../editar/" + props.id;
-  
 
   const tipo = "data:image/png;base64,";
 
@@ -22,23 +21,22 @@ const ItemProduto = (props) => {
 
   function rotaDeletar() {
     api
-    .delete("/produtos/" + id)
-    .then(function (response) {
-        window.location.reload(true);
+      .delete("/produtos/" + id)
+      .then(function (response) {
+        window.location.reload();
         alert("Produto deletado com sucesso");
         console.log(response);
       })
-    .catch((err) => {
-      console.error("ops! ocorreu um erro" + err);
-    });
-};
-  
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err);
+      });
+  }
 
   return (
-    <div class="quadradoGrande">
+    <div className="quadradoGrande">
       <img src={tipo + props.img_url} alt="imagemdoproduto" />
 
-      <div class="descrisãodositens">
+      <div className="descrisãodositens">
         <h2> {props.name} </h2>
         <br />
         <p> {props.marca} </p>
@@ -48,19 +46,23 @@ const ItemProduto = (props) => {
         <p> cor: {props.cor} </p>
       </div>
 
-      <div class="iconeRedondos">
-        <button size="large">
+      <div className="iconeRedondos">
+        <button>
           <Link to={id}>
             <img src={Carrinho} alt="comprar produto" />
           </Link>
         </button>
-        <button size="large">
+        <button>
           <Link to={ideditar}>
             <img src={Editar} alt="editar produto" />
           </Link>
         </button>
-        <button size="large">
-          <img src={Deletar} alt="deletar produto" onClick={() => rotaDeletar()} />
+        <button>
+          <img
+            src={Deletar}
+            alt="deletar produto"
+            onClick={() => rotaDeletar()}
+          />
         </button>
       </div>
     </div>
