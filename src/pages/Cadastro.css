@@ -1,72 +1,64 @@
 form .campo {
-
-    width: 500px;
-   
-    margin-top: 15px;
-    
+  width: 500px;
+  margin-top: 15px;
 }
 
-
-
 .quadro {
-    display: flex;
-    flex-direction: column;
-    min-height: 15vh;
-    margin-left: 200px;
-    padding-top: 30px;
-
+  display: flex;
+  flex-direction: column;
+  min-height: 15vh;
+  margin-left: 200px;
+  padding-top: 30px;
 }
 
 .quadro .addimg {
-    cursor: pointer;
-    opacity: 0;
-    z-index: 1;
-    width: 90px;
-    height: 90px;
-    position: absolute;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 1;
+  width: 90px;
+  height: 90px;
+  position: absolute;
 }
 
 .quadro img {
-    width: 120px;
-    height: 120px;
+  width: 120px;
+  height: 120px;
 }
 
-
-.botão {
-    background: #0F4C81;
-    color: #fff;
-    text-decoration: none;
-    width: 200px;
-    height: 40px;
-    font-family: 'Raleway', sans-serif;
-    font-weight: bold;
-    border-radius: 5px;
-    font-size: 15px;
-   padding-top: 10px;
-   margin-bottom: 15px;
-     
+.bootao {
+  background: #0f4c81;
+  color: #fff;
+  text-decoration: none;
+  width: 200px;
+  height: 40px;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  border-radius: 5px;
+  font-size: 15px;
+  padding-top: 10px;
+  margin-bottom: 15px;
+  border: 0;
 }
 
 .h {
-    font-family: 'Raleway', sans-serif;
-    margin-left: 200px;
-    font-weight: bold;
+  font-family: "Raleway", sans-serif;
+  margin-left: 200px;
+  font-weight: bold;
 }
 
 .link {
-    margin-left: 200px;
-    font-family: 'Raleway', sans-serif;
-    margin-bottom: 30px;
-    color: #0F4C81;
-}
-    
-.quadro .botão a {
-    font-size: 5px;
+  margin-left: 200px;
+  font-family: "Raleway", sans-serif;
+  margin-bottom: 30px;
+  color: #0f4c81;
 }
 
-.link a{
-    text-decoration: none;
-    font-size: 13px;
-    color: #0F4C81;
+.quadro .bootao a {
+  font-size: 5px;
 }
 
+.link a {
+  text-decoration: none;
+  font-size: 13px;
+  color: #0f4c81;
+}

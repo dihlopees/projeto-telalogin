@@ -22,17 +22,17 @@ const authService = {
     },
 
     // Função responsável por recuperar o usuário logado do local storage
-    // getLoggedUser(){
-    //     let data = localStorage.getItem("token");
-    //     if(!data) return null;
-    //     try {
-    //         let parsedData = (data)
-    //         return parsedData
-    //     } catch (error) {
-    //         console.log(error)
-    //         return null
-    //     }
-    // }
+    getLoggedUser(){
+        let data = localStorage.getItem("token");
+        if(!data) return null;
+        try {
+            let parsedData = (data)
+            return parsedData
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    }
 }
 
 export default authService;

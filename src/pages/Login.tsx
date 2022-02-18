@@ -1,17 +1,22 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../componentes/header/logo.svg"
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { Button } from "@mui/material";
 import "./Login.css";
 import authService from "../services/auth.service";
 
 
-function Login() {
+function Login(props) {
 
   const navegar = useNavigate();
 
-  
+  let {setRota} = props;
+
+  useEffect(() => {
+    if(authService.getLoggedUser()) {
+      setRota(true);
+    }
+  }, []);
 
 
   const estadoInicial = {
@@ -54,14 +59,15 @@ function Login() {
       let res = await authService.authenticate(data)
       console.log("res", res.data)
       
-        if (!res.data) {
+        // // if (!res.data) {
 
-          alert("Usuario não cadastrado")
-        } else {
+        //   alert("Usuario não cadastrado")
+        // } else {
+          setRota(true);
           authService.setLoggedUser(res.data)
          navegar("./home")
          
-        }
+        // }
 
         
     } catch (error) {
@@ -109,9 +115,9 @@ function Login() {
           </span>
         </div>
         <div>
-          <Button className="button" type="submit" onClick={enviarForm}>
+          <button className="button" type="submit" onClick={enviarForm}>
             LOGAR
-          </Button>
+          </button>
         </div>
       </form>
     

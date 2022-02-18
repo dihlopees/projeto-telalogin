@@ -1,7 +1,7 @@
 import  React ,{ useState, useEffect } from "react";
 import Header from "../componentes/header/header";
 import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
+
 import Addicon from "../imagens/addicone.svg";
 import ItemProduto from "../componentes/item-produto/itemProduto";
 import api from "../api";
@@ -56,10 +56,10 @@ function Home() {
 
       <nav className="inicio">
 
-        <Button className="botaoinicial" variant="contained" size="large">
+        <button className="botaoinicial"  >
           <img src={Addicon} className="icone" alt="adicionar produto" />
           <Link to="../Cadastro">Adicionar Produto</Link>
-        </Button>
+        </button>
       </nav>
 
       <h1 id="h1">Produtos</h1>

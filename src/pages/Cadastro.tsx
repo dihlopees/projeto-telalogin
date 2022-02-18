@@ -6,8 +6,8 @@ import TextField from "@mui/material/TextField";
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import { Button, Select } from "@mui/material";
 import AddFoto from "../imagens/icone-adicionar-foto.svg";
+import { Select } from "@mui/material";
 import "./Cadastro.css";
 
 export function Cadastro() {
@@ -22,6 +22,10 @@ export function Cadastro() {
   //crio uma const para maperar o objeto.
   //crio uma constante para fazer setCor event.target.value e depois coloco no onchange.
   const [itCor, setitCor] = useState([]);
+
+
+  const tipo = "data:image/png;base64,";
+
 
   function opcoesNome(event) {
     setNome(event.target.value);
@@ -107,7 +111,7 @@ export function Cadastro() {
     corid: cor,
   })
   .then(function (response) {
-    window.location.replace('/')
+    window.location.replace('/home')
     alert("Produto cadastrado com sucesso");
     console.log(response);
   })
@@ -122,7 +126,7 @@ export function Cadastro() {
       <br />
       <nav className="link">
         <br />
-        <Link to="../">Home</Link>
+        <Link to="../home">Home</Link>
         {"   >  "}
         <Link to="../Cadastro">Adicionar Produto</Link>
       </nav>
@@ -195,13 +199,13 @@ export function Cadastro() {
           <br />
           <br />
           <input className="addimg" type="file"  onChange={handleFile} />
-          <img src={AddFoto} alt="adicionar foto" />
+          <img src={imagem ? tipo + imagem : AddFoto} alt="adicionar foto" />
           <br />
           <br />
           <br />
-          <Button className="botão" variant="contained" size="large" onClick={() => enviandoBack()}>
+          <button className="bootao" onClick={() => enviandoBack()}>
             ADICIONAR PRODUTO
-          </Button>
+          </button>
         </form>
       </div>
     </div>

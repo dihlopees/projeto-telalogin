@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "@mui/material";
+
 import Header from "../componentes/header/header";
 import { Link, useParams } from "react-router-dom";
 import Menos from "../imagens/iconecarrinho-menos.svg";
@@ -171,7 +171,7 @@ export function Produtos() {
       <br />
       <nav className="link">
         <br />
-        <Link to="../">Home</Link>
+        <Link to="../home">Home</Link>
         {"   >   "}
         <Link to="../Carrinho">Carrinho</Link>
       </nav>
@@ -218,14 +218,14 @@ export function Produtos() {
             <p>Valor Total {conv(somaTotal())}</p>
             <br />
 
-            <Button
+            <button
               className="botao"
-              variant="contained"
-              size="small"
+              
+            
               onClick={() => sumirDiv()}
             >
               PAGAR
-            </Button>
+            </button>
             <br />
           </div>
         </div>

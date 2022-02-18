@@ -7,8 +7,8 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 // import InputAdornment from '@mui/material/InputAdornment';
 import MenuItem from "@mui/material/MenuItem";
-import { Button, Select } from "@mui/material";
-import AddFoto from "../imagens/icone-adicionar-foto.svg";
+import { Select } from "@mui/material";
+
 import "./Cadastro.css";
 
 export function Editar() {
@@ -21,6 +21,7 @@ export function Editar() {
 
   const [itCor, setitCor] = useState([]);
 
+  const tipo = "data:image/png;base64,";
 
   const { id } = useParams();
   console.log(id);
@@ -86,7 +87,27 @@ export function Editar() {
         console.error("ops! ocorreu um erro" + err);
       });
   }
+  function handleFile(event) {
+    transFileparaBase(event.target.files[0])
+   
+    
+    };
 
+    function transFileparaBase(file){
+
+      file.text().then(() => {
+        let reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onloadend = () => {
+          const document: any = reader.result
+
+          setImagem(document.slice(document.lastIndexOf(",") + 1, document.length)) 
+          console.log(document.slice(document.lastIndexOf(",") + 1, document.length));
+        };
+
+
+      })
+    };
 
 
   function enviandoBack() {
@@ -102,7 +123,7 @@ export function Editar() {
 
   })
   .then(function (response) {
-    window.location.replace('/')
+    window.location.replace('/home')
     alert("Produto editado com sucesso");
     console.log(response);
   })
@@ -118,7 +139,7 @@ export function Editar() {
       <br />
       <nav className="link">
         <br />
-        <Link to="../">Home</Link>
+        <Link to="../home">Home</Link>
         {"   >  "}
         <Link to="../Editar">Editar Produto</Link>
       </nav>
@@ -127,13 +148,14 @@ export function Editar() {
 
       <div className="quadro">
         <form>
-          <TextField
+          <TextField 
             className="campo"
             id="outlined-basic"
             label="Nome do Produto"
             variant="outlined"
             value={nome ??""}
             onChange={opcoesNome}
+            
           />
           <br />
           <TextField
@@ -188,16 +210,16 @@ export function Editar() {
           <br />
           <br />
           <br />
-          <input className="addimg" type="file"  />
-          <img src={AddFoto} alt="adicionar foto" />
+          <input className="addimg" type="file" onChange={handleFile} />
+          <img src={tipo + imagem} alt="adicionar foto" />
           {/* <input type="file" ><img src={imagem} alt="imagem do produto" /></input> */}
           <br />
           <br />
           <br />
 
-          <Button className="botão" variant="contained" size="large" onClick={() => enviandoBack()}>
+          <button className="bootao" onClick={() => enviandoBack()}>
             SALVAR PRODUTO
-          </Button>
+          </button>
         </form>
       </div>
     </div>
