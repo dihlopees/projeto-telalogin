@@ -101,6 +101,13 @@ export function Cadastro() {
 
   function enviandoBack() {
     console.log(produto);
+    if (nome === "") {
+      return alert("Preencha o nome");
+    }
+
+    if (marca === "") {
+      return alert("Preencha a a marca");
+    }
 
     api.post('/produtos', {
     nome: nome,

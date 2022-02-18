@@ -59,15 +59,15 @@ function Login(props) {
       let res = await authService.authenticate(data)
       console.log("res", res.data)
       
-        // // if (!res.data) {
+        if (!res.data) {
 
-        //   alert("Usuario não cadastrado")
-        // } else {
+          alert("Usuario não cadastrado")
+        } else {
           setRota(true);
           authService.setLoggedUser(res.data)
          navegar("./home")
          
-        // }
+        }
 
         
     } catch (error) {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import api from "../api";
 import Header from "../componentes/header/header";
-import { Link , useParams} from "react-router-dom";
+import { Link , useNavigate, useParams} from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
@@ -12,6 +12,9 @@ import { Select } from "@mui/material";
 import "./Cadastro.css";
 
 export function Editar() {
+
+
+  
   const [cor, setCor] = useState(0);
   const [nome, setNome]= useState("");
   const [marca, setMarca]= useState("");
@@ -23,6 +26,8 @@ export function Editar() {
 
   const tipo = "data:image/png;base64,";
 
+  const navegar = useNavigate();
+  
   const { id } = useParams();
   console.log(id);
 
@@ -111,6 +116,14 @@ export function Editar() {
 
 
   function enviandoBack() {
+    if (nome === "") {
+      return alert("Preencha o nome");
+    }
+
+    if (marca === "") {
+      return alert("Preencha a a marca");
+    }
+
     
 
     api.put("/produtos/" + id, {
@@ -123,9 +136,9 @@ export function Editar() {
 
   })
   .then(function (response) {
-    window.location.replace('/home')
+    console.log("oiiiiiiiiiiuuuu" + response);
     alert("Produto editado com sucesso");
-    console.log(response);
+    // navegar("/home");
   })
   .catch(function (error) {
     console.log(error);
@@ -189,7 +202,7 @@ export function Editar() {
             >
               {itCor.map((it) => {
                 return (
-                <MenuItem value={it.id}>{it.nome}</MenuItem>
+                <MenuItem  value={it.id}>{it.nome}</MenuItem>
               )})}
             </Select>
           </FormControl>
