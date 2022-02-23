@@ -7,13 +7,14 @@ import {Cadastro} from "./pages/Cadastro";
 import {Produtos} from "./pages/Produtos";
 import {Editar} from "./pages/Editar";
 import Login from "./pages/Login";
+import Esqueci from "pages/Esqueci";
 
 const Rota = () => {
-    const[protecao, setProtecao] = useState(false)
+    // const[protecao, setProtecao] = useState(false)
 
     return (
         <BrowserRouter>
-        {protecao ?
+        {/* {protecao ? */}
         
         <Routes>
         <Route element = {<Login/>} path="/"/>
@@ -21,12 +22,13 @@ const Rota = () => {
         <Route element= {<Cadastro/>} path="cadastro" />
         <Route element={<Produtos/>} path="produtos/:id"/>
         <Route element={<Editar/>} path="editar/:id"/>
+        <Route element={<Esqueci/>} path="usuario/esqueci" />
         </Routes>
 
-        :
+        {/* :
         <Routes>
         <Route element={<Login setRota={setProtecao}/>} path="*" />
-        </Routes>}
+        </Routes>} */}
         </BrowserRouter>
     )
 }

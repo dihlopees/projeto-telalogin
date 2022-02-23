@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import api from "../api";
 import Header from "../componentes/header/header";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import AddFoto from "../imagens/icone-adicionar-foto.svg";
-import { Select } from "@mui/material";
+import { InputAdornment, Select } from "@mui/material";
 import "./Cadastro.css";
 
 export function Cadastro() {
@@ -92,6 +92,7 @@ export function Cadastro() {
   },[]
   );
 
+  const navigate = useNavigate();
 
   function trazerDados() {
     api.get("/cor").then((temp) => {
@@ -99,15 +100,9 @@ export function Cadastro() {
     })
   }
 
-  function enviandoBack() {
+  function enviandoBack(event) {
     console.log(produto);
-    if (nome === "") {
-      return alert("Preencha o nome");
-    }
-
-    if (marca === "") {
-      return alert("Preencha a a marca");
-    }
+    event.preventDefault();
 
     api.post('/produtos', {
     nome: nome,
@@ -118,9 +113,10 @@ export function Cadastro() {
     corid: cor,
   })
   .then(function (response) {
-    window.location.replace('/home')
-    alert("Produto cadastrado com sucesso");
-    console.log(response);
+    console.log("oiiiii" + response);
+    alert("Produto Cadastrado com Sucesso");
+    navigate("/home")
+    
   })
   .catch(function (error) {
     console.log(error);
@@ -144,7 +140,7 @@ export function Cadastro() {
 
     
       <div className="quadro">
-        <form>
+        <form onSubmit={enviandoBack}>
           <TextField
             className="campo"
             id="outlined-basic"
@@ -152,6 +148,7 @@ export function Cadastro() {
             variant="outlined"
             value={nome ??""}
             onChange={opcoesNome}
+            required
           />
           <br />
           <TextField
@@ -160,6 +157,7 @@ export function Cadastro() {
             label="Marca"
             variant="outlined"
             onChange={opcoesMarca}
+            required
           />
           <br />
           <TextField
@@ -168,10 +166,14 @@ export function Cadastro() {
             label="Valor"
             variant="outlined"
             onChange={opcoesValor}
+            required
+            InputProps={{ 
+              startAdornment: <InputAdornment position="start">R$</InputAdornment>
+            }}
           />
           <br />
           <br/>
-          <FormControl sx={{width:"20ch"}}>
+          <FormControl>
           <InputLabel id="demo-simple-select-readonly-label">Cor</InputLabel>
           <Select
             className="campo"
@@ -179,6 +181,7 @@ export function Cadastro() {
             id="demo-simple-select-readonly"
             value={cor}
             onChange={opcoesCor}
+            required
             
           >
            { 
@@ -198,6 +201,7 @@ export function Cadastro() {
             placeholder="none"
             variant="outlined"
             onChange={opcoesData}
+            required
             InputLabelProps={{
               shrink: true,
             }}
@@ -205,12 +209,12 @@ export function Cadastro() {
           <br />
           <br />
           <br />
-          <input className="addimg" type="file"  onChange={handleFile} />
+          <input className="addimg" type="file"  onChange={handleFile} required/>
           <img src={imagem ? tipo + imagem : AddFoto} alt="adicionar foto" />
           <br />
           <br />
           <br />
-          <button className="bootao" onClick={() => enviandoBack()}>
+          <button className="bootao" type="submit">  
             ADICIONAR PRODUTO
           </button>
         </form>

@@ -1,14 +1,24 @@
 import React from "react";
-import './App.css';
-// import Login from "../src/pages/Login"
-import Rota from './routes';
+import RotaExterna from "routes/externalRoutes";
+import RotaInterna from "routes/internalRoutes";
+
+
+// import Rota from './routes';
 
 function App() {
+
+  function getToken(){
+    console.log(localStorage.getItem("token"))
+    return localStorage.getItem("token")
+    
+  }
+  
+
   return (
     <div>
-      <Rota/>
-      {/* <Login/> */}
-      
+      {getToken() ? <RotaInterna /> : <RotaExterna />}
+
+      {/* <Rota/> */}
     </div>
   );
 }

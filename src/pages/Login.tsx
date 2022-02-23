@@ -1,31 +1,30 @@
-import React, {useEffect, useState} from "react";
-import { useNavigate } from "react-router-dom";
-import Logo from "../componentes/header/logo.svg"
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Logo from "../componentes/header/logo.svg";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import "./Login.css";
 import authService from "../services/auth.service";
 
-
 function Login(props) {
+  // const navegar = useNavigate();
 
-  const navegar = useNavigate();
+  
 
-  let {setRota} = props;
-
-  useEffect(() => {
-    if(authService.getLoggedUser()) {
-      setRota(true);
-    }
-  }, []);
-
+  // useEffect(() => {
+  //   if (authService.getLoggedUser()) {
+  //     navegar("/home");
+     
+  //   }
+  // }, []);
 
   const estadoInicial = {
     user: "",
-    password: ""
+    password: "",
   };
 
   const [inputs, setInputs] = useState(estadoInicial);
   const [showPassoword, setShowPassoword] = useState(false);
+ 
 
   function togglePassoword() {
     setShowPassoword(!showPassoword);
@@ -34,11 +33,11 @@ function Login(props) {
   function setarNovoValor(event) {
     setInputs((preState) => ({
       ...preState,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     }));
   }
 
-  const enviarForm = async (event) =>  {
+  const enviarForm = async (event) => {
     event.preventDefault();
 
     if (inputs.user === "") {
@@ -49,38 +48,37 @@ function Login(props) {
       return alert("Preencha a senha");
     }
 
-    // alert(`${inputs.user} / ${inputs.password}`);
-
     let data = {
       email: inputs.user,
-      senha: inputs.password
-    }
-    try { 
-      let res = await authService.authenticate(data)
-      console.log("res", res.data)
-      
-        if (!res.data) {
+      senha: inputs.password,
+    };
+    try {
+      let res = await authService.authenticate(data);
+      console.log("RESPOSTA", res.data);
 
-          alert("Usuario não cadastrado")
-        } else {
-          setRota(true);
-          authService.setLoggedUser(res.data)
-         navegar("./home")
-         
-        }
-
+      if (!res.data) {
+        alert("Usuario não cadastrado");
+      } else {
         
+        authService.setLoggedUser(res.data);
+        window.location.href = "/home";
+        console.log("home")
+        
+      }
+      
+  
+
     } catch (error) {
-      console.log(error)
-      alert("Erro ao efetuar o login")
+      console.log(error);
+      alert("Erro ao efetuar o login");
     }
     // console.log("data", data);
-  }
+  };
 
   return (
     <div className="formulario">
-      <img id="img-login" src={Logo} alt="logo"/>
-      <form>
+      <img id="img-login" src={Logo} alt="logo" />
+      <form onSubmit={enviarForm}>
         <div className="password-field">
           <input
             type="text"
@@ -89,7 +87,9 @@ function Login(props) {
             name="user"
             onChange={setarNovoValor}
           />
-          {!inputs.user ? <p className="input-error">Digite seu e-mail </p> : null}
+          {!inputs.user ? (
+            <p className="input-error">Digite seu e-mail </p>
+          ) : null}
         </div>
         <div className="password-field">
           <input
@@ -115,12 +115,18 @@ function Login(props) {
           </span>
         </div>
         <div>
-          <button className="button" type="submit" onClick={enviarForm}>
+          <button className="button" type="submit">
             LOGAR
           </button>
+
+
+
+          <div className="esqueciSenha">
+            <Link to="../usuario/esqueci">ESQUECI MINHA SENHA</Link>
+            </div>
+
         </div>
       </form>
-    
     </div>
   );
 }

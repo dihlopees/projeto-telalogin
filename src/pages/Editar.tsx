@@ -7,7 +7,7 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 // import InputAdornment from '@mui/material/InputAdornment';
 import MenuItem from "@mui/material/MenuItem";
-import { Select } from "@mui/material";
+import { InputAdornment, Select } from "@mui/material";
 
 import "./Cadastro.css";
 
@@ -115,16 +115,8 @@ export function Editar() {
     };
 
 
-  function enviandoBack() {
-    if (nome === "") {
-      return alert("Preencha o nome");
-    }
-
-    if (marca === "") {
-      return alert("Preencha a a marca");
-    }
-
-    
+  function enviandoBack(event) {
+    event.preventDefault();
 
     api.put("/produtos/" + id, {
     nome: nome,
@@ -137,8 +129,9 @@ export function Editar() {
   })
   .then(function (response) {
     console.log("oiiiiiiiiiiuuuu" + response);
-    alert("Produto editado com sucesso");
-    // navegar("/home");
+    alert("Produto Editado com Sucesso");
+    navegar("/home")
+
   })
   .catch(function (error) {
     console.log(error);
@@ -160,7 +153,7 @@ export function Editar() {
       <h2 className="h">Editar Produtos</h2>
 
       <div className="quadro">
-        <form>
+      <form onSubmit={enviandoBack}>
           <TextField 
             className="campo"
             id="outlined-basic"
@@ -168,6 +161,7 @@ export function Editar() {
             variant="outlined"
             value={nome ??""}
             onChange={opcoesNome}
+            required
             
           />
           <br />
@@ -178,6 +172,7 @@ export function Editar() {
             variant="outlined"
             value={marca ??""}
             onChange={opcoesMarca}
+            required
           />
           <br />
           <TextField
@@ -186,8 +181,12 @@ export function Editar() {
             variant="outlined"
             value={valor ??""}
             onChange={opcoesValor}
-            // startAdornment={<InputAdornment position="start">R$</InputAdornment>}
+            InputProps={{ 
+              startAdornment: <InputAdornment position="start">R$</InputAdornment>
+            }}
+            
             label="Valor"
+            required
           />
           <br />
           <br/>
@@ -199,6 +198,7 @@ export function Editar() {
               id="demo-simple-select-readonly"
               value={cor}
               onChange={opcoesCor}
+              required
             >
               {itCor.map((it) => {
                 return (
@@ -216,6 +216,7 @@ export function Editar() {
             variant="outlined"
             value={data}
             onChange={opcoesData}
+            required
             InputLabelProps={{
               shrink: true,
             }}
@@ -230,7 +231,7 @@ export function Editar() {
           <br />
           <br />
 
-          <button className="bootao" onClick={() => enviandoBack()}>
+          <button className="bootao" type="submit" >
             SALVAR PRODUTO
           </button>
         </form>

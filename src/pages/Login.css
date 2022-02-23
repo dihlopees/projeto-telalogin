@@ -83,4 +83,15 @@
     border: 1px solid white ;
     padding: 0;
   }
+
+  .esqueciSenha a {
+    color:#fff;
+    font-size: 10px;
+  }
+
+  .esqueciSenha  {
+    padding-top: 20px;
+    display: flex;
+    justify-content: right;
+  }
   

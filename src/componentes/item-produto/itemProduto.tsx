@@ -24,7 +24,7 @@ const ItemProduto = (props) => {
       .delete("/produtos/" + id)
       .then(function (response) {
         window.location.reload();
-        alert("Produto deletado com sucesso");
+        alert("Produto Deletado com Sucesso");
         console.log(response);
       })
       .catch((err) => {
