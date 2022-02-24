@@ -219,6 +219,7 @@ export function Cadastro() {
           </button>
         </form>
       </div>
+      
     </div>
   );
 }

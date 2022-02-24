@@ -1,22 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Logo from "../componentes/header/logo.svg";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import "./Login.css";
 import authService from "../services/auth.service";
 
 function Login(props) {
-  // const navegar = useNavigate();
-
   
-
-  // useEffect(() => {
-  //   if (authService.getLoggedUser()) {
-  //     navegar("/home");
-     
-  //   }
-  // }, []);
-
   const estadoInicial = {
     user: "",
     password: "",
@@ -24,7 +14,6 @@ function Login(props) {
 
   const [inputs, setInputs] = useState(estadoInicial);
   const [showPassoword, setShowPassoword] = useState(false);
- 
 
   function togglePassoword() {
     setShowPassoword(!showPassoword);
@@ -59,15 +48,10 @@ function Login(props) {
       if (!res.data) {
         alert("Usuario não cadastrado");
       } else {
-        
         authService.setLoggedUser(res.data);
         window.location.href = "/home";
-        console.log("home")
-        
+        console.log("home");
       }
-      
-  
-
     } catch (error) {
       console.log(error);
       alert("Erro ao efetuar o login");
@@ -119,12 +103,9 @@ function Login(props) {
             LOGAR
           </button>
 
-
-
           <div className="esqueciSenha">
             <Link to="../usuario/esqueci">ESQUECI MINHA SENHA</Link>
-            </div>
-
+          </div>
         </div>
       </form>
     </div>

@@ -19,7 +19,10 @@ const authService = {
         let parsedData = (token)
         console.log(token); 
         localStorage.setItem("token", parsedData.token)
+        
     },
+
+      
 
     // Função responsável por recuperar o usuário logado do local storage
     getLoggedUser(){
@@ -34,5 +37,7 @@ const authService = {
         }
     }
 }
+
+
 
 export default authService;

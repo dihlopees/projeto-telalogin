@@ -9,6 +9,7 @@ import "./Home.css";
 
 
 
+
 function Home() {
   //os itens do meu produto é um componente, é onde eu coloco os botoes e é onde vai ser renderizado
   // é onde tem que ter img nome e onde vou passar as props
@@ -50,6 +51,14 @@ function Home() {
       />
   ));
 
+  function clearUser() {
+    
+    localStorage.removeItem("token")
+    window.location.href = "/login";
+    
+
+}
+
   return (
     <div>
       <Header />
@@ -60,6 +69,8 @@ function Home() {
           <img src={Addicon} className="icone" alt="adicionar produto" />
           <Link to="../Cadastro">Adicionar Produto</Link>
         </button>
+
+        <button className="botaoSair" onClick={() => clearUser()}> SAIR DA CONTA</button>
       </nav>
 
       <h1 id="h1">Produtos</h1>
