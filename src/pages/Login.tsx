@@ -6,7 +6,6 @@ import "./Login.css";
 import authService from "../services/auth.service";
 
 function Login(props) {
-  
   const estadoInicial = {
     user: "",
     password: "",
@@ -56,7 +55,7 @@ function Login(props) {
       console.log(error);
       alert("Erro ao efetuar o login");
     }
-    // console.log("data", data);
+  
   };
 
   return (

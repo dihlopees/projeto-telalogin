@@ -3,95 +3,88 @@
     margin: 0;
     box-sizing: border-box;
   } */
-  
-  .formulario {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #00264B;
-    flex-direction: column;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
 
-  #img-login{
-    width: 300px;
-    margin-bottom: 100px;
-   
-  }
-  
-  .password-field {
-    position: relative;
-    margin-bottom: 12px;
-    
-    
-  }
+.formulario {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00264b;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
+#img-login {
+  width: 300px;
+  margin-bottom: 100px;
+}
 
-  
-  input {
-    width: 500px;
-    height: 20px;
-    padding: 1em;
-    border: 2px solid grey;
-    border-radius: 10px;
-  
-    font-size: 1rem;
-    letter-spacing: 1px;
-  }
-  
-  input::placeholder {
-    color: #353535;
-    font-weight: bold;
-    
-  }
-  
-  .icon {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    font-size: 32px;
-  }
-  
-  .icon-button {
-    border: 0;
-    font-size: inherit;
-    background: transparent;
-  }
-  .input-error {
-    color: white;
-    font-size: 12px;
-    margin-top: 5px;
-  }
+.password-field {
+  position: relative;
+  margin-bottom: 12px;
+}
 
-  .button {
-    background: #0f4c81;
-    color: #fff;
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: bold;
-    border-radius: 5px;
-    width: 536px;
-    height: 50px;
-    text-align: center;
-    letter-spacing: 1px;
-    border: 1px solid white ;
-    padding: 0;
-  }
+input {
+  width: 500px;
+  height: 20px;
+  padding: 1em;
+  border: 2px solid grey;
+  border-radius: 10px;
 
-  .esqueciSenha a {
-    color:#fff;
-    font-size: 10px;
-  }
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
 
-  .esqueciSenha  {
-    padding-top: 20px;
-    display: flex;
-    justify-content: right;
-  }
-  
+input::placeholder {
+  color: #353535;
+  font-weight: bold;
+}
+
+.icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 32px;
+}
+
+.icon-button {
+  border: 0;
+  font-size: inherit;
+  background: transparent;
+}
+.input-error {
+  color: white;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.button {
+  background: #0f4c81;
+  color: #fff;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 536px;
+  height: 50px;
+  text-align: center;
+  letter-spacing: 1px;
+  border: 1px solid white;
+  padding: 0;
+}
+
+.esqueciSenha a {
+  color: #fff;
+  font-size: 10px;
+}
+
+.esqueciSenha {
+  padding-top: 20px;
+  display: flex;
+  justify-content: right;
+}

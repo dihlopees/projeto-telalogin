@@ -31,10 +31,6 @@ const ItemProduto = (props) => {
       .delete("/produtos/" + id)
       .then(function (response) {
         setIsOpen(true);
-
-        // window.location.reload()
-
-        // alert("Produto Deletado com Sucesso");
         console.log(response);
       })
       .catch((err) => {

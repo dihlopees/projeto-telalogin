@@ -121,8 +121,6 @@ export function Editar() {
         setMessage("Produto editado com sucesso!");
         setSeverity("success");
         setIsOpen(true);
-        // alert("Produto Editado com Sucesso");
-        // // navegar("/home")
       })
       .catch(function (error) {
         setMessage("Erro ao editar produto");
@@ -223,7 +221,7 @@ export function Editar() {
           <br />
           <input className="addimg" type="file" onChange={handleFile} />
           <img src={tipo + imagem} alt="adicionar foto" />
-        
+
           <br />
           <br />
           <br />

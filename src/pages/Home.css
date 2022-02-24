@@ -68,10 +68,8 @@
 }
 .botaoSair {
   margin-right: 90px;
- background-color: transparent;
- border:#0f4c81 solid 2px;
- border-radius: 7px;
- color: #0f4c81;
- 
- 
+  background-color: transparent;
+  border: #0f4c81 solid 2px;
+  border-radius: 7px;
+  color: #0f4c81;
 }

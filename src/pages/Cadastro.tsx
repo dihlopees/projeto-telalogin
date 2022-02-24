@@ -18,7 +18,6 @@ export function Cadastro() {
   const [valor, setValor] = useState();
   const [data, setData] = useState();
 
-
   const [itCor, setitCor] = useState([]);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -87,8 +86,6 @@ export function Cadastro() {
     trazerDados();
   }, []);
 
-  // const navigate = useNavigate();
-
   function trazerDados() {
     api.get("/cor").then((temp) => {
       setitCor(temp.data);
@@ -113,14 +110,6 @@ export function Cadastro() {
         setMessage("Produto criado com sucesso!");
         setSeverity("success");
         setIsOpen(true);
-        // alert("Produto Cadastrado com Sucesso");
-        // navigate("/home")
-
-        // window.location.href = "/home";
-
-        // window.location.reload();
-
-          
       })
       .catch(function (error) {
         console.log(error);

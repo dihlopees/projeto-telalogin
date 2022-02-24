@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
-
 import Header from "../componentes/header/header";
 import { Link, useParams } from "react-router-dom";
 import Menos from "../imagens/iconecarrinho-menos.svg";
 import Plus from "../imagens/iconecarrinho-mais.svg";
 import api from "../api";
 import "./Produtos.css";
-// import IconeFrete from "../imagens/IconeFrete.svg";
 import UnicoItem from "../componentes/itemCarrinho.js/itemCarrinho";
-
 
 export function Produtos() {
   const [count, setCount] = useState(1);
@@ -62,7 +59,7 @@ export function Produtos() {
     return (total = soma + resultado);
   }
 
-  // console.log(item.valor);
+
 
   function produtoComprado() {
     return item.map((it) => (
@@ -80,89 +77,87 @@ export function Produtos() {
   const [display, setDisplay] = useState("none");
 
   function sumirDiv() {
-
-   return setDisplay("block")
-
+    return setDisplay("block");
   }
 
   const Pagar = () => {
-
     let resultado = total;
     let sobra = 0;
-    let quant100 = ("");
-    let quant50 = ("");
-    let quant20 = ("");
-    let quant10 = ("");
-    let quant5 = ("");
-    let quant2 = ("");
-    let quantRestante = ("");
+    let quant100 = "";
+    let quant50 = "";
+    let quant20 = "";
+    let quant10 = "";
+    let quant5 = "";
+    let quant2 = "";
+    let quantRestante = "";
 
-    
-    
     if (resultado / 100 > 1) {
       sobra = resultado - Math.floor(resultado / 100) * 100;
 
       console.log("olha aqui:" + sobra);
-      quant100=(Math.floor(resultado / 100) + "  cédulas de R$100,00");
+      quant100 = Math.floor(resultado / 100) + "  cédulas de R$100,00";
       console.log(quant100);
     }
     if (sobra / 50 > 1) {
-
-      quant50=(Math.floor(sobra / 50) + "  cédulas de R$50,00");
+      quant50 = Math.floor(sobra / 50) + "  cédulas de R$50,00";
       sobra = sobra - Math.floor(sobra / 50) * 50;
     }
     if (sobra / 20 >= 1) {
-      quant20=(Math.floor(sobra / 20) + "  cédulas de R$20,00");
+      quant20 = Math.floor(sobra / 20) + "  cédulas de R$20,00";
       sobra = sobra - Math.floor(sobra / 20) * 20;
     }
     if (sobra / 10 >= 1) {
-      quant10=(Math.floor(sobra / 10) + "  cédulas de R$10,00");
+      quant10 = Math.floor(sobra / 10) + "  cédulas de R$10,00";
 
       sobra = sobra - Math.floor(sobra / 10) * 10;
     }
     if (sobra / 5 > 1) {
-      quant5=(Math.floor(sobra / 5) + "  cédulas de R$5,00");
+      quant5 = Math.floor(sobra / 5) + "  cédulas de R$5,00";
       sobra = sobra - Math.floor(sobra / 5) * 5;
     }
     if (sobra / 2 >= 1) {
-      quant2=(Math.floor(sobra / 2) + "  cédulas de R$2,00");
+      quant2 = Math.floor(sobra / 2) + "  cédulas de R$2,00";
       sobra = sobra - Math.floor(sobra / 2) * 2;
-    } if (sobra >0 ) {
-      quantRestante = ("Sobrou: R$    " + sobra.toFixed(2))
-    } 
-    
-
-   
+    }
+    if (sobra > 0) {
+      quantRestante = "Sobrou: R$    " + sobra.toFixed(2);
+    }
 
     return (
-    
-    <div className="pagar" style={{color: '#008000' , 
-    float: 'right',
-     marginRight: '100px' , 
-     border: '1px solid #008000' ,
-     padding: '10px',
-     marginBottom: '15px',
-     textAlign: 'center' ,
-     borderRadius: '7px',
-     display: display
-     }}>
-
-
-      <h3 style={{color: '#008000', fontSize: '20px'}}> Pagamento Realizado com Sucesso!</h3>
-      <br/>
-      <p style={{color: '#008000', fontSize: '15px'}}  > Este pagamento foi realizado com: </p>
-      <br/>
-      <p style={{color: '#008000'}}  >{quant100}</p>
-      <p style={{color: '#008000'}}   >{quant50}</p>
-      <p style={{color: '#008000'}}  >{quant20}</p>
-      <p style={{color: '#008000'}}  >{quant10}   </p>
-      <p style={{color: '#008000'}} >{quant5}</p>
-      <p style={{color: '#008000'}}>{quant2}</p>
-      <p style={{color: '#008000'}}>{quantRestante}</p>
-
-    </div>
+      <div
+        className="pagar"
+        style={{
+          color: "#008000",
+          float: "right",
+          marginRight: "100px",
+          border: "1px solid #008000",
+          padding: "10px",
+          marginBottom: "15px",
+          textAlign: "center",
+          borderRadius: "7px",
+          display: display,
+        }}
+      >
+        <h3 style={{ color: "#008000", fontSize: "20px" }}>
+          {" "}
+          Pagamento Realizado com Sucesso!
+        </h3>
+        <br />
+        <p style={{ color: "#008000", fontSize: "15px" }}>
+          {" "}
+          Este pagamento foi realizado com:{" "}
+        </p>
+        <br />
+        <p style={{ color: "#008000" }}>{quant100}</p>
+        <p style={{ color: "#008000" }}>{quant50}</p>
+        <p style={{ color: "#008000" }}>{quant20}</p>
+        <p style={{ color: "#008000" }}>{quant10} </p>
+        <p style={{ color: "#008000" }}>{quant5}</p>
+        <p style={{ color: "#008000" }}>{quant2}</p>
+        <p style={{ color: "#008000" }}>{quantRestante}</p>
+      </div>
     );
-  }
+  };
 
   return (
     <div>
@@ -181,7 +176,7 @@ export function Produtos() {
           <h1> Carrinho</h1>
           <div className="produto">
             {produtoComprado()}
-            {/* <UnicoItem item={item} /> */}
+     
 
             <hr id="hr" />
 
@@ -218,19 +213,14 @@ export function Produtos() {
             <p>Valor Total {conv(somaTotal())}</p>
             <br />
 
-            <button
-              className="botao"
-              
-            
-              onClick={() => sumirDiv()}
-            >
+            <button className="botao" onClick={() => sumirDiv()}>
               PAGAR
             </button>
             <br />
           </div>
         </div>
       </div>
-      <Pagar/>
+      <Pagar />
     </div> //fim da div todos
   );
 }
