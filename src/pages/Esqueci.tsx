@@ -1,6 +1,7 @@
 import { Snackbar, Alert } from "@mui/material";
 import Header from "componentes/header/header";
 import React, { useState } from "react";
+import { Link} from "react-router-dom";
 import endpointEsqueci from "services/endpoint.esqueci";
 
 function Esqueci() {
@@ -17,6 +18,8 @@ function Esqueci() {
   >("success");
 
   const [message, setMessage] = useState<string>("");
+
+  const [corMessage, setCorMessage] = useState<string>("");
 
   function closeSnackbar() {
     setIsOpen(false);
@@ -41,18 +44,28 @@ function Esqueci() {
     };
 
     try {
-      endpointEsqueci.enviando(data);
+      let res = await endpointEsqueci.enviando(data);
+
+      if (!res.data){
+        setMessage("Email não cadastrado , informe outro email");
+         setSeverity("error");
+          setIsOpen(true);
+
+      } else{
       console.log("deu certoooooo eu achoooooo" , data)
       setMessage("Uma senha temporaria foi enviada para o email:  " + data.email);
         setSeverity("success");
         setIsOpen(true);
+        setCorMessage("rgb(74, 219, 74)");
       // alert("Uma senha temporaria foi enviada para o email:  " + data.email)
       // window.location.href = "/home";
+      }
     } catch (error) {
       console.log(error);
-      setMessage("Erro ao enviar email");
+      setMessage("E-mail não cadastrado , informe outro e-mail");
       setSeverity("error");
       setIsOpen(true);
+      setCorMessage("rgb(221, 116, 116)");
       // alert("Erro ao enviar email")
 
     }
@@ -62,6 +75,21 @@ function Esqueci() {
     <>
       <Header />
       <div>
+
+      <button style={{backgroundColor: "transparent" ,
+ border:"#0f4c81 solid 2px",
+ borderRadius: "7px",
+ color:" #0f4c81",
+marginTop:"20px",
+marginLeft:"20px",
+height:"40px",
+}}
+      
+      className="botaoVoltar">
+      
+      <Link to="../login" >  VOLTAR PARA LOGIN  </Link> 
+      </button>
+
         <form onSubmit={enviarForm}
           style={{
             display: "flex",
@@ -123,7 +151,7 @@ function Esqueci() {
           sx={{
             width: "100%",
             marginTop: "45px",
-            backgroundColor: "rgb(74, 219, 74)",
+            backgroundColor: {corMessage} ,
           }}
         >
           {message}
