@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import api from "../api";
 import Header from "../componentes/header/header";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
@@ -87,7 +87,7 @@ export function Cadastro() {
     trazerDados();
   }, []);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   function trazerDados() {
     api.get("/cor").then((temp) => {
@@ -119,6 +119,8 @@ export function Cadastro() {
         // window.location.href = "/home";
 
         // window.location.reload();
+
+          
       })
       .catch(function (error) {
         console.log(error);

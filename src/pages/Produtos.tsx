@@ -128,7 +128,7 @@ export function Produtos() {
       quant2=(Math.floor(sobra / 2) + "  cédulas de R$2,00");
       sobra = sobra - Math.floor(sobra / 2) * 2;
     } if (sobra >0 ) {
-      quantRestante = ("Sobrou: R$    " +  sobra )
+      quantRestante = ("Sobrou: R$    " + sobra.toFixed(2))
     } 
     
 

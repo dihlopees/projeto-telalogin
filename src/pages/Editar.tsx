@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import api from "../api";
 import Header from "../componentes/header/header";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
@@ -22,7 +22,7 @@ export function Editar() {
 
   const tipo = "data:image/png;base64,";
 
-  const navegar = useNavigate();
+  // const navegar = useNavigate();
 
   const { id } = useParams();
   console.log(id);
