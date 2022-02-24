@@ -1,40 +1,35 @@
 import React, { useEffect, useState } from "react";
 import api from "../api";
 import Header from "../componentes/header/header";
-import { Link , useNavigate, useParams} from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
-// import InputAdornment from '@mui/material/InputAdornment';
 import MenuItem from "@mui/material/MenuItem";
-import { InputAdornment, Select } from "@mui/material";
+import { Alert, InputAdornment, Select, Snackbar } from "@mui/material";
 
 import "./Cadastro.css";
 
 export function Editar() {
-
-
-  
   const [cor, setCor] = useState(0);
-  const [nome, setNome]= useState("");
-  const [marca, setMarca]= useState("");
-  const [imagem, setImagem]= useState("");
-  const [valor, setValor]= useState();
-  const [data, setData]= useState();
+  const [nome, setNome] = useState("");
+  const [marca, setMarca] = useState("");
+  const [imagem, setImagem] = useState("");
+  const [valor, setValor] = useState();
+  const [data, setData] = useState();
 
   const [itCor, setitCor] = useState([]);
 
   const tipo = "data:image/png;base64,";
 
   const navegar = useNavigate();
-  
+
   const { id } = useParams();
   console.log(id);
 
-
   function opcoesNome(event) {
     setNome(event.target.value);
-  };
+  }
 
   const opcoesMarca = (event) => {
     setMarca(event.target.value);
@@ -47,36 +42,34 @@ export function Editar() {
   const opcoesData = (event) => {
     setData(event.target.value);
   };
-  // const opcoesImagem = (event) => {
-  //   setImagem(event.target.value);
-  // };
 
   const opcoesCor = (event) => {
     setCor(event.target.value);
   };
 
- 
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const [severity, setSeverity] = useState<
+    "success" | "info" | "warning" | "error"
+  >("success");
+
+  const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
     trazerCor();
     trazerDados();
   }, []);
 
-
-
   function trazerCor() {
     api.get("/cor").then((temp) => {
       setitCor(temp.data);
     });
-  };
-
-
+  }
 
   function trazerDados() {
     api
       .get("/produtos/" + id)
       .then((response) => {
-       
         setNome(response.data.nome);
         setMarca(response.data.marca);
         setValor(response.data.valor);
@@ -84,8 +77,6 @@ export function Editar() {
         setData(response.data.data);
         setImagem(response.data.imagem);
 
-
-        
         console.log(response.data);
       })
       .catch((err) => {
@@ -93,52 +84,59 @@ export function Editar() {
       });
   }
   function handleFile(event) {
-    transFileparaBase(event.target.files[0])
-   
-    
-    };
+    transFileparaBase(event.target.files[0]);
+  }
 
-    function transFileparaBase(file){
+  function transFileparaBase(file) {
+    file.text().then(() => {
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        const document: any = reader.result;
 
-      file.text().then(() => {
-        let reader = new FileReader()
-        reader.readAsDataURL(file)
-        reader.onloadend = () => {
-          const document: any = reader.result
-
-          setImagem(document.slice(document.lastIndexOf(",") + 1, document.length)) 
-          console.log(document.slice(document.lastIndexOf(",") + 1, document.length));
-        };
-
-
-      })
-    };
-
+        setImagem(
+          document.slice(document.lastIndexOf(",") + 1, document.length)
+        );
+        console.log(
+          document.slice(document.lastIndexOf(",") + 1, document.length)
+        );
+      };
+    });
+  }
 
   function enviandoBack(event) {
     event.preventDefault();
 
-    api.put("/produtos/" + id, {
-    nome: nome,
-    marca: marca,
-    valor: valor,
-    data: data,
-    corid: cor,
-    imagem: imagem,
+    api
+      .put("/produtos/" + id, {
+        nome: nome,
+        marca: marca,
+        valor: valor,
+        data: data,
+        corid: cor,
+        imagem: imagem,
+      })
+      .then(function (response) {
+        console.log("oiiiiiiiiiiuuuu" + response);
+        setMessage("Produto editado com sucesso!");
+        setSeverity("success");
+        setIsOpen(true);
+        // alert("Produto Editado com Sucesso");
+        // // navegar("/home")
+      })
+      .catch(function (error) {
+        setMessage("Erro ao editar produto");
+        setSeverity("error");
+        setIsOpen(true);
+        console.log(error);
+      });
+  }
 
-  })
-  .then(function (response) {
-    console.log("oiiiiiiiiiiuuuu" + response);
-    alert("Produto Editado com Sucesso");
-    navegar("/home")
+  function closeSnackbar() {
+    setIsOpen(false);
+  }
 
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-  };
-
-  console.log(itCor)
+  console.log(itCor);
   return (
     <div>
       <Header />
@@ -153,16 +151,15 @@ export function Editar() {
       <h2 className="h">Editar Produtos</h2>
 
       <div className="quadro">
-      <form onSubmit={enviandoBack}>
-          <TextField 
+        <form onSubmit={enviandoBack}>
+          <TextField
             className="campo"
             id="outlined-basic"
             label="Nome do Produto"
             variant="outlined"
-            value={nome ??""}
+            value={nome ?? ""}
             onChange={opcoesNome}
             required
-            
           />
           <br />
           <TextField
@@ -170,7 +167,7 @@ export function Editar() {
             id="outlined-basic"
             label="Marca"
             variant="outlined"
-            value={marca ??""}
+            value={marca ?? ""}
             onChange={opcoesMarca}
             required
           />
@@ -179,17 +176,18 @@ export function Editar() {
             className="campo"
             id="outlined-adornment-amount"
             variant="outlined"
-            value={valor ??""}
+            value={valor ?? ""}
             onChange={opcoesValor}
-            InputProps={{ 
-              startAdornment: <InputAdornment position="start">R$</InputAdornment>
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">R$</InputAdornment>
+              ),
             }}
-            
             label="Valor"
             required
           />
           <br />
-          <br/>
+          <br />
           <FormControl sx={{ width: "20ch" }}>
             <InputLabel id="demo-simple-select-readonly-label">Cor</InputLabel>
             <Select
@@ -201,9 +199,8 @@ export function Editar() {
               required
             >
               {itCor.map((it) => {
-                return (
-                <MenuItem  value={it.id}>{it.nome}</MenuItem>
-              )})}
+                return <MenuItem value={it.id}>{it.nome}</MenuItem>;
+              })}
             </Select>
           </FormControl>
           <br />
@@ -226,16 +223,34 @@ export function Editar() {
           <br />
           <input className="addimg" type="file" onChange={handleFile} />
           <img src={tipo + imagem} alt="adicionar foto" />
-          {/* <input type="file" ><img src={imagem} alt="imagem do produto" /></input> */}
+        
           <br />
           <br />
           <br />
 
-          <button className="bootao" type="submit" >
+          <button className="bootao" type="submit">
             SALVAR PRODUTO
           </button>
         </form>
       </div>
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        open={isOpen}
+        autoHideDuration={6000}
+        onClose={closeSnackbar}
+      >
+        <Alert
+          onClose={closeSnackbar}
+          severity={severity}
+          sx={{
+            width: "100%",
+            marginTop: "45px",
+            backgroundColor: "rgb(74, 219, 74)",
+          }}
+        >
+          {message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

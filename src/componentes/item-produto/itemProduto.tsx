@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import api from "../../api";
 import { Link } from "react-router-dom";
 import Carrinho from "../../imagens/icone-carrinho.svg";
 import Editar from "../../imagens/icone-editar.svg";
 import Deletar from "../../imagens/icone-deletar.svg";
 import "./itemProduto.css";
+import { Snackbar, Alert } from "@mui/material";
 
 const ItemProduto = (props) => {
   const id = "../Produtos/" + props.id;
   const ideditar = "../editar/" + props.id;
+
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const tipo = "data:image/png;base64,";
 
@@ -19,12 +22,19 @@ const ItemProduto = (props) => {
     });
   }
 
+  function closeSnackbar() {
+    setIsOpen(false);
+  }
+
   function rotaDeletar() {
     api
       .delete("/produtos/" + id)
       .then(function (response) {
-        window.location.reload();
-        alert("Produto Deletado com Sucesso");
+        setIsOpen(true);
+
+        // window.location.reload()
+
+        // alert("Produto Deletado com Sucesso");
         console.log(response);
       })
       .catch((err) => {
@@ -65,6 +75,24 @@ const ItemProduto = (props) => {
           />
         </button>
       </div>
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "left" }}
+        open={isOpen}
+        autoHideDuration={6000}
+        onClose={closeSnackbar}
+      >
+        <Alert
+          onClose={closeSnackbar}
+          severity="success"
+          sx={{
+            width: "100%",
+            marginTop: "45px",
+            backgroundColor: "rgb(221, 116, 116)",
+          }}
+        >
+          Produto deletado com sucesso!
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

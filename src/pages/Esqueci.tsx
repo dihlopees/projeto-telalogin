@@ -1,3 +1,4 @@
+import { Snackbar, Alert } from "@mui/material";
 import Header from "componentes/header/header";
 import React, { useState } from "react";
 import endpointEsqueci from "services/endpoint.esqueci";
@@ -8,6 +9,18 @@ function Esqueci() {
   };
 
   const [inputs, setInputs] = useState(estadoInicial);
+
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const [severity, setSeverity] = useState<
+    "success" | "info" | "warning" | "error"
+  >("success");
+
+  const [message, setMessage] = useState<string>("");
+
+  function closeSnackbar() {
+    setIsOpen(false);
+  }
 
   function setarNovoValor(event) {
     setInputs((preState) => ({
@@ -30,11 +43,17 @@ function Esqueci() {
     try {
       endpointEsqueci.enviando(data);
       console.log("deu certoooooo eu achoooooo" , data)
-      alert("Uma senha temporaria foi enviada para o email:  " + data.email)
-      window.location.href = "/home";
+      setMessage("Uma senha temporaria foi enviada para o email:  " + data.email);
+        setSeverity("success");
+        setIsOpen(true);
+      // alert("Uma senha temporaria foi enviada para o email:  " + data.email)
+      // window.location.href = "/home";
     } catch (error) {
       console.log(error);
-      alert("Erro ao enviar email")
+      setMessage("Erro ao enviar email");
+      setSeverity("error");
+      setIsOpen(true);
+      // alert("Erro ao enviar email")
 
     }
   };
@@ -91,6 +110,25 @@ function Esqueci() {
             </button>
           </div>
         </form>
+
+        <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        open={isOpen}
+        autoHideDuration={8000}
+        onClose={closeSnackbar}
+      >
+        <Alert
+          onClose={closeSnackbar}
+          severity={severity}
+          sx={{
+            width: "100%",
+            marginTop: "45px",
+            backgroundColor: "rgb(74, 219, 74)",
+          }}
+        >
+          {message}
+        </Alert>
+      </Snackbar>
       </div>
     </>
   );
