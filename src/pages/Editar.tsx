@@ -22,8 +22,6 @@ export function Editar() {
 
   const tipo = "data:image/png;base64,";
 
-  // const navegar = useNavigate();
-
   const { id } = useParams();
   console.log(id);
 
@@ -65,6 +63,8 @@ export function Editar() {
       setitCor(temp.data);
     });
   }
+
+  
 
   function trazerDados() {
     api

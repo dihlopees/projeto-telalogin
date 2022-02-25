@@ -77,7 +77,7 @@ export function Produtos() {
   const [display, setDisplay] = useState("none");
 
   function sumirDiv() {
-    return setDisplay("block");
+    return setDisplay("block") ;
   }
 
   const Pagar = () => {

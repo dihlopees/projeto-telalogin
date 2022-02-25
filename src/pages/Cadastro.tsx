@@ -11,11 +11,11 @@ import { Alert, InputAdornment, Select, Snackbar } from "@mui/material";
 import "./Cadastro.css";
 
 export function Cadastro() {
-  const [cor, setCor] = useState();
+  const [cor, setCor] = useState("");
   const [nome, setNome] = useState("");
   const [marca, setMarca] = useState("");
   const [imagem, setImagem] = useState();
-  const [valor, setValor] = useState();
+  const [valor, setValor] = useState(0);
   const [data, setData] = useState();
 
   const [itCor, setitCor] = useState([]);
@@ -91,6 +91,18 @@ export function Cadastro() {
       setitCor(temp.data);
     });
   }
+  function limpar() {
+    
+    setMarca("");
+    setValor(0);
+    setNome("");
+    setCor("");
+    setData(null);
+    setImagem(null);
+    
+
+
+  }
 
   function enviandoBack(event) {
     console.log(produto);
@@ -110,6 +122,9 @@ export function Cadastro() {
         setMessage("Produto criado com sucesso!");
         setSeverity("success");
         setIsOpen(true);
+
+        limpar();
+
       })
       .catch(function (error) {
         console.log(error);
@@ -152,6 +167,7 @@ export function Cadastro() {
             id="outlined-basic"
             label="Marca"
             variant="outlined"
+            value={marca ?? ""}
             onChange={opcoesMarca}
             required
           />
@@ -161,6 +177,7 @@ export function Cadastro() {
             id="outlined-basic"
             label="Valor"
             variant="outlined"
+            value={valor ?? ""}
             onChange={opcoesValor}
             required
             InputProps={{
@@ -195,6 +212,7 @@ export function Cadastro() {
             placeholder="none"
             variant="outlined"
             onChange={opcoesData}
+            value={data ?? ""}
             required
             InputLabelProps={{
               shrink: true,
