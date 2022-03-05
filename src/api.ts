@@ -1,6 +1,7 @@
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 
-const api = axios.create({
+const api: AxiosInstance = axios.create({
+  timeout: 60000,
   baseURL: "http://localhost:3001",
 });
 

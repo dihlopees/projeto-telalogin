@@ -9,6 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Alert, InputAdornment, Select, Snackbar } from "@mui/material";
 
 import "./Cadastro.css";
+import { ProdutoDto } from "dtos/ProdutoDto";
 
 export function Editar() {
   const [cor, setCor] = useState(0);
@@ -107,17 +108,12 @@ export function Editar() {
   function enviandoBack(event) {
     event.preventDefault();
 
+    const produtoDto = new ProdutoDto(nome, marca, valor, data, cor, imagem);
+
     api
-      .put("/produtos/" + id, {
-        nome: nome,
-        marca: marca,
-        valor: valor,
-        data: data,
-        corid: cor,
-        imagem: imagem,
-      })
+      .put("/produtos/" + id, produtoDto)
       .then(function (response) {
-        console.log("oiiiiiiiiiiuuuu" + response);
+        console.log("RESPOSTA" + response);
         setMessage("Produto editado com sucesso!");
         setSeverity("success");
         setIsOpen(true);

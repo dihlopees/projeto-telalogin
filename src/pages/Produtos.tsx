@@ -11,6 +11,8 @@ export function Produtos() {
   const [count, setCount] = useState(1);
   const [item, setItem] = useState([]);
   const [valorproduto, setValorproduto] = useState(0);
+
+
   let soma = 0;
   let resultado = 0;
   let total = 0;
@@ -98,8 +100,9 @@ export function Produtos() {
       quant100 = Math.floor(resultado / 100) + "  cédulas de R$100,00";
       console.log(quant100);
     }
-    if (sobra / 50 > 1) {
+    if (sobra / 50 > 1){
       quant50 = Math.floor(sobra / 50) + "  cédulas de R$50,00";
+      // quant50 = Math.floor(resultado / 50) + "  cédulas de R$50,00";
       sobra = sobra - Math.floor(sobra / 50) * 50;
     }
     if (sobra / 20 >= 1) {

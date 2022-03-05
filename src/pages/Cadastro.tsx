@@ -9,9 +9,10 @@ import MenuItem from "@mui/material/MenuItem";
 import AddFoto from "../imagens/icone-adicionar-foto.svg";
 import { Alert, InputAdornment, Select, Snackbar } from "@mui/material";
 import "./Cadastro.css";
+import { ProdutoDto } from "dtos/ProdutoDto";
 
 export function Cadastro() {
-  const [cor, setCor] = useState("");
+  const [cor, setCor] = useState();
   const [nome, setNome] = useState("");
   const [marca, setMarca] = useState("");
   const [imagem, setImagem] = useState();
@@ -71,17 +72,6 @@ export function Cadastro() {
     });
   }
 
-  const produto = [
-    {
-      nome,
-      marca,
-      valor,
-      data,
-      cor,
-      imagem,
-    },
-  ];
-
   useEffect(() => {
     trazerDados();
   }, []);
@@ -91,32 +81,23 @@ export function Cadastro() {
       setitCor(temp.data);
     });
   }
+
   function limpar() {
-    
     setMarca("");
     setValor(0);
     setNome("");
-    setCor("");
+    setCor(null);
     setData(null);
     setImagem(null);
-    
-
-
   }
 
   function enviandoBack(event) {
-    console.log(produto);
     event.preventDefault();
 
+    const produtoDTO = new ProdutoDto(nome, marca, valor, data, cor, imagem);
+
     api
-      .post("/produtos", {
-        nome: nome,
-        marca: marca,
-        valor: valor,
-        imagem: imagem,
-        data: data,
-        corid: cor,
-      })
+      .post("/produtos", produtoDTO)
       .then(function (response) {
         console.log("oiiiii" + response);
         setMessage("Produto criado com sucesso!");
@@ -124,7 +105,6 @@ export function Cadastro() {
         setIsOpen(true);
 
         limpar();
-
       })
       .catch(function (error) {
         console.log(error);
